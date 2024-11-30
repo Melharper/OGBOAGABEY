@@ -14,74 +14,6 @@ local BoaTeleports = loadstring(game:HttpGet("https://raw.githubusercontent.com/
 local InfiniteYield = loadstring(game:HttpGet("https://raw.githubusercontent.com/Melharper/GabeBoa2/refs/heads/main/InfiniteYield.lua"))()
 local Powers = loadstring(game:HttpGet("https://raw.githubusercontent.com/Melharper/GabeBoa2/refs/heads/main/Powers.lua"))()
 
--- Play the whitelisted sound
-local function playWhitelistedSound()
-    local sound = Instance.new("Sound")
-    sound.SoundId = "rbxassetid://8196319469"
-    sound.Volume = 10
-    sound.Parent = game.Workspace
-    sound:Play()
-
-    -- Stop the sound after 4 seconds
-    wait(4)
-    sound:Stop()
-
-    -- Additional sound for whitelisted users
-    local additionalSound = Instance.new("Sound")
-    additionalSound.SoundId = "rbxassetid://9656754733"
-    additionalSound.Volume = 10
-    additionalSound.Parent = game.Workspace
-    additionalSound:Play()
-end
-
--- Function to show the GUI message for whitelisted users
-local function showWhitelistedGui()
-    local gui = Instance.new("ScreenGui")
-    gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-
-    local label = Instance.new("TextLabel")
-    label.Parent = gui
-    label.Text = "YOUR A BOA OG WHITELISTED USER"
-    label.Size = UDim2.new(0.8, 0, 0.2, 0)
-    label.Position = UDim2.new(0.1, 0, 0.4, 0)
-    label.BackgroundTransparency = 1
-    label.TextColor3 = Color3.fromRGB(255, 0, 0)  -- Chaos Red color
-    label.Font = Enum.Font.FredokaOne
-    label.TextScaled = true
-    label.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
-    label.TextStrokeTransparency = 0
-
-    -- Simulate the blood drip effect by moving the text down slowly
-    local dripTime = 0.1
-    for i = 1, 10 do
-        label.Position = label.Position + UDim2.new(0, 0, 0.05, 0)
-        wait(dripTime)
-    end
-
-    -- Animate the Label to Shake
-    local runService = game:GetService("RunService")
-    local amplitude = 5
-    local frequency = 50
-
-    local connection
-    connection = runService.RenderStepped:Connect(function(deltaTime)
-        local xOffset = math.random(-amplitude, amplitude)
-        local yOffset = math.random(-amplitude, amplitude)
-        label.Position = UDim2.new(0.1, xOffset, 0.4, yOffset)
-        wait(0.02) -- Smooth shaking
-    end)
-
-    -- Stop shaking after 8 seconds and destroy the GUI
-    task.delay(8, function()
-        connection:Disconnect()
-        gui:Destroy()
-    end)
-end
-
--- Run the initial parts when the script is executed
-playWhitelistedSound()  -- Play the sounds
-showWhitelistedGui()  -- Show the GUI message
-
 -- Auto-Farming Tab
 local farmingTab = Window:MakeTab({
     Name = "Gabe Boa Farming",
@@ -157,6 +89,74 @@ adminTab:AddButton({
         InfiniteYield.load()
     end
 })
+
+-- Play the whitelisted sound
+local function playWhitelistedSound()
+    local sound = Instance.new("Sound")
+    sound.SoundId = "rbxassetid://8196319469"
+    sound.Volume = 10
+    sound.Parent = game.Workspace
+    sound:Play()
+
+    -- Stop the sound after 4 seconds
+    wait(4)
+    sound:Stop()
+
+    -- Additional sound for whitelisted users
+    local additionalSound = Instance.new("Sound")
+    additionalSound.SoundId = "rbxassetid://9656754733"
+    additionalSound.Volume = 10
+    additionalSound.Parent = game.Workspace
+    additionalSound:Play()
+end
+
+-- Function to show the GUI message for whitelisted users
+local function showWhitelistedGui()
+    local gui = Instance.new("ScreenGui")
+    gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+    local label = Instance.new("TextLabel")
+    label.Parent = gui
+    label.Text = "YOUR A BOA OG WHITELISTED USER"
+    label.Size = UDim2.new(0.8, 0, 0.2, 0)
+    label.Position = UDim2.new(0.1, 0, 0.4, 0)
+    label.BackgroundTransparency = 1
+    label.TextColor3 = Color3.fromRGB(255, 0, 0)  -- Chaos Red color
+    label.Font = Enum.Font.FredokaOne
+    label.TextScaled = true
+    label.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+    label.TextStrokeTransparency = 0
+
+    -- Simulate the blood drip effect by moving the text down slowly
+    local dripTime = 0.1
+    for i = 1, 10 do
+        label.Position = label.Position + UDim2.new(0, 0, 0.05, 0)
+        wait(dripTime)
+    end
+
+    -- Animate the Label to Shake
+    local runService = game:GetService("RunService")
+    local amplitude = 5
+    local frequency = 50
+
+    local connection
+    connection = runService.RenderStepped:Connect(function(deltaTime)
+        local xOffset = math.random(-amplitude, amplitude)
+        local yOffset = math.random(-amplitude, amplitude)
+        label.Position = UDim2.new(0.1, xOffset, 0.4, yOffset)
+        wait(0.02) -- Smooth shaking
+    end)
+
+    -- Stop shaking after 8 seconds and destroy the GUI
+    task.delay(8, function()
+        connection:Disconnect()
+        gui:Destroy()
+    end)
+end
+
+-- Run the initial parts when the script is executed
+playWhitelistedSound()  -- Play the sounds
+showWhitelistedGui()  -- Show the GUI message
 
 -- Initialize OrionLib
 OrionLib:Init()
