@@ -1,4 +1,5 @@
 -- OrionLib Integration for Gabe&Snicks BOA Cult
+local BoaHud = loadstring(game:HttpGet("https://raw.githubusercontent.com/Melharper/GabeBoa2/refs/heads/main/BoaHudGabey.lua"))()
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
 local Window = OrionLib:MakeWindow({
